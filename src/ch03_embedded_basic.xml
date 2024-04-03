@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<!DOCTYPE chapter
+[
+
+<!ENTITY % crl_ent PUBLIC "crl.ent" 'http://www.crifan.com/files/res/docbook/entity/crl.ent'>
+%crl_ent;
+
+]>
+<chapter    xml:id="embedded_basic"
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xl="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:ns5="http://www.w3.org/1998/Math/MathML"
+    xmlns:ns4="http://www.w3.org/1999/xhtml"
+    xmlns:ns3="http://www.w3.org/2000/svg"
+    xmlns:ns="http://docbook.org/ns/docbook">
+<title>嵌入式开发基础知识</title>
+<para></para>
+<para></para>
+<para></para>
+
+<sect1 xml:id="embedded_common_concept"><title>嵌入式领域的基本概念</title>
+    <para>关于嵌入式开发，其实也有很多的背景知识。</para>
+    <para>只有了解了背景知识、整体概念后，才能真正搞懂每个细节内部具体实现的原因。</para>
+    <para>关于嵌入式方面的知识，目前已整理出系列的教程：</para>
+    <orderedlist>
+        <listitem>先去看<link xl:href="http://www.crifan.com/files/doc/docbook/embedded_soft_dev/release/html/embedded_soft_dev.html">嵌入式软件开发</link>以便了解嵌入式软件领域的背景知识和通用知识。</listitem>
+        <listitem>而在嵌入式软件领域内，和驱动开发相关的内容，可以参考：<link xl:href="http://www.crifan.com/files/doc/docbook/embedded_drv_dev/release/html/embedded_drv_dev.html">嵌入式驱动开发</link></listitem>
+        <listitem>而在嵌入式软件领域内，和Linux软件相关的知识，可以参考：<link xl:href="http://www.crifan.com/files/doc/docbook/embedded_linux_dev/release/html/embedded_linux_dev.html">嵌入式Linux软件开发</link></listitem>
+        <listitem>而在嵌入式的软件驱动领域内，和Linux驱动相关的知识，可以参考：<link xl:href="http://www.crifan.com/files/doc/docbook/embedded_linux_drv_dev/release/html/embedded_linux_drv_dev.html">嵌入式Linux驱动开发</link></listitem>
+    </orderedlist>
+    <para></para>
+</sect1>
+
+<sect1 xml:id="cross_compile"><title>交叉编译</title>
+    <para>嵌入式开发中，对于交叉编译的概念，是第一个需要去搞懂的。</para>
+    <para>以及，搞清楚，如何得到交叉编译器，是使用已有的，还是自己编一个自己的</para>
+    <para>关于这方面的内容，可参考教程：</para>
+    <para><link xl:href="http://www.crifan.com/files/doc/docbook/cross_compile/release/html/cross_compile.html">交叉编译详解</link></para>
+    <para>其中关于如何用crosstool-ng去制作交叉编译器方面的知识，也专门整理出了教程：</para>
+    <para><link xl:href="http://www.crifan.com/files/doc/docbook/crosstool_ng/release/html/crosstool_ng.html">crosstool-ng详解</link></para>
+</sect1>
+
+</chapter>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!DOCTYPE preface>
+
+<preface    xml:id="preface"
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xl="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:ns5="http://www.w3.org/1998/Math/MathML"
+    xmlns:ns4="http://www.w3.org/1999/xhtml"
+    xmlns:ns3="http://www.w3.org/2000/svg"
+    xmlns:ns="http://docbook.org/ns/docbook">
+<title>前言</title>
+
+<sect1 xml:id="purpose"><title>本文目的</title>
+    <para>本文目的在于，介绍软件开发的各种基础知识</para>
+    <para>以实现，看了之后，对于软件开发的很多领域的基础知识有所了解</para>
+    <para>如此在进行后续的真正的软件开发时，遇到各种细节知识，才会明白由来和背景知识</para>
+</sect1>
+
+<sect1 xml:id="todo"><title>待完成</title>
+    <para></para>
+</sect1>
+
+</preface>

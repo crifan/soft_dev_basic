@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<!DOCTYPE chapter
+[
+
+<!ENTITY % crl_ent PUBLIC "crl.ent" 'http://www.crifan.com/files/res/docbook/entity/crl.ent'>
+%crl_ent;
+
+]>
+<chapter    xml:id="upper_layer_basic"
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xl="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:ns5="http://www.w3.org/1998/Math/MathML"
+    xmlns:ns4="http://www.w3.org/1999/xhtml"
+    xmlns:ns3="http://www.w3.org/2000/svg"
+    xmlns:ns="http://docbook.org/ns/docbook">
+<title>上层软件开发基础知识</title>
+<para></para>
+<para>有些软件开发的基础知识，是主要用于上层软件领域的。</para>
+<para>此处，就来介绍这些软件基础知识。</para>
+<para></para>
+<para></para>
+
+<sect1 xml:id="json"><title>轻量级数据交换格式：JSON</title>
+    <para>在折腾网络方面的东西，往往会涉及到数据交换</para>
+    <para>JSON是其中一种</para>
+    <para>相对来说，属于比较轻量级的</para>
+    <para>且容易实现。</para>
+    <para>关于JSON的详细解释，参见教程：</para>
+    <para><link xl:href="http://www.crifan.com/files/doc/docbook/json_tutorial/release/html/json_tutorial.html">JSON详解</link></para>
+    <para></para>
+</sect1>
+
+<sect1 xml:id="charset_char_encoding"><title>字符编码</title>
+    <para>上层软件开发时，很多时候，会遇到和字符的编码格式方面的处理</para>
+    <para>比如用C#，Python处理抓取的网页时，就涉及到对应的charset</para>
+    <para>就要用正确的编码去编码，解码对应的字符串。</para>
+    <para>此时，就需要对字符编码，这个相对比较通用的基础知识，有个了解。</para>
+    <para>关于字符编码，之前写了个极其详尽的教程：</para>
+    <para><link xl:href="http://www.crifan.com/files/doc/docbook/char_encoding/release/html/char_encoding.html">字符编码详解</link></para>
+    <para>后来发现，该教程，还是内容太多，太繁琐。</para>
+    <para>所以，后来为了更容易看懂常见的字符编码，了解常见的字符编码之间的关系</para>
+    <para>又去写了个相对简要的介绍：</para>
+    <para><link xl:href="http://www.crifan.com/character_encoding_charset_simpile_tutorial/">字符编码简明教程</link></para>
+    <para></para>
+</sect1>
+
+<sect1 xml:id="regular_expression"><title>正则表达式</title>
+    <para>如果是在上层软件开发期间，涉及到复杂的字符串处理的话</para>
+    <para>尤其是查找，替换等操作的话</para>
+    <para>很多时候，都可以利用，正则表达式，这个工具，或者说语言，去高效的实现你要的操作</para>
+    <para>关于正则表达式，可参见教程：</para>
+    <para><link xl:href="http://www.crifan.com/files/doc/docbook/regular_expression/release/html/regular_expression.html">正则表达式学习心得</link></para>
+    <para>和</para>
+    <para><link xl:href="http://www.crifan.com/files/doc/docbook/regular_expression/release/html/regular_expression.html">正则表达式学习心得</link></para>
+</sect1>
+
+<sect1 xml:id="web_scrape_emulate_login"><title>网站抓取和模拟登陆</title>
+    <para>在折腾，网络抓取，模拟登陆，动态网页等等期间</para>
+    <para>总结了很多基本的原理，逻辑，以及示例代码等等</para>
+    <para>然后整理出来称为一个独立的教程</para>
+    <para>对于这方面的需要参考的，可以去看：</para>
+    <para><link xl:href="http://www.crifan.com/files/doc/docbook/web_scrape_emulate_login/release/html/web_scrape_emulate_login.html">详解抓取网站，模拟登陆，抓取动态网页的原理和实现（Python，C#等）</link></para>
+</sect1>
+
+</chapter>

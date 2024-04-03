@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<!DOCTYPE appendix
+[
+
+<!ENTITY % crl_ent PUBLIC "crl.ent" 'http://www.crifan.com/files/res/docbook/entity/crl.ent'>
+%crl_ent;
+
+]>
+<appendix 
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xl="http://www.w3.org/1999/xlink"
+
+    xml:id="appendix">
+<title>个人推荐资料合集</title>
+
+<sect1 xml:id="refer_books"><title>推荐书目</title>
+        <para>《程序员的自我修养》 编译、链接与库 - 潘爱民</para>
+        <para>linux设备驱动开发详解 - 宋宝华</para>
+</sect1>
+
+<sect1 xml:id="refer_material"><title>推荐资料</title>
+        <para></para>
+</sect1>
+
+</appendix>

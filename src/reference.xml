@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<bibliography
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xl="http://www.w3.org/1999/xlink"
+
+    xml:id="reference">
+
+<bibliodiv xml:id="ref.windows"><title>Windows</title>
+    <bibliomixed id="ref.windows_cmd_5_tips">
+      <bibliosource><link xl:href="http://www.mybbdy.com/show.asp?id=3873">Windows7 CMD提示的5个技巧</link></bibliosource>
+      <author>mybbdy</author>
+    </bibliomixed>
+</bibliodiv>
+
+<bibliodiv xml:id="ref.java"><title>Java</title>
+    <bibliomixed id="ref.java_set_env">
+      <bibliosource><link xl:href="http://jingyan.baidu.com/article/c85b7a6414f2ee003bac95d5.html">java设置环境变量_百度经验</link></bibliosource>
+      <author>baidu</author>
+    </bibliomixed>
+</bibliodiv>
+
+<bibliomixed id="ref.cpoellab_cse40463">
+  <bibliosource><link xl:href="http://www.cse.nd.edu/~cpoellab/teaching/cse40463/">CSE40463/60463 Fall 2007</link></bibliosource>
+  <author>cpoellab</author>
+</bibliomixed>
+
+</bibliography>

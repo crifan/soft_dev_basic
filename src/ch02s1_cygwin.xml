@@ -1,0 +1,605 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<!DOCTYPE chapter
+[
+
+<!ENTITY % crl_ent PUBLIC "crl.ent" 'http://www.crifan.com/files/res/docbook/entity/crl.ent'>
+%crl_ent;
+
+]>
+
+<sect1
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xl="http://www.w3.org/1999/xlink"
+    
+    xml:id="cygwin">
+<title>Cygwin</title>
+<abstract></abstract>
+
+<sect2 xml:id="what_is_cygwin"><title>什么是Cygwin</title>
+    <para>Cygwin是一个集合，这个集合包含了一堆的工具，目的在于，在windows平台上，提供一个Linux的环境。</para>
+    <para>作为在Windows下面的软件，Cygwin中最核心的，是个dll库，叫做cygwin1.dll，其提供了底层的Linux API的所有功能，供Cygwin下面的各种工具，模块等调用，以此来实现在Windows下模拟Linux环境。</para>
+    <para>从cygwin的具体表现和文件组成上来说，就是：核心的Cygwin DLL文件 + 各种Linux下面的模块（工具/软件/库）</para>
+</sect2>
+
+<sect2 xml:id="why_exist_cygwin"><title>为何会有Cygwin</title>
+    <para>计算机的世界，在操作系统方面，目前用的最广泛的，有三类：开源免费的Linux，微软的Windows，苹果的Mac。</para>
+    <para>随着计算机的发展，很多时候，尤其是做软件开发方面，常常会遇到在某种平台上，希望利用到另外一种平台上的工具，或环境，其中就包括在Windows下面，利用Linux中的环境和工具。</para>
+    <para>对于此种需求，最终才出现了各种方案，Cygwin就是其中的一种，提供了一个Windows下面使用Linux环境的平台。</para>
+    <para>有人会问了，不是很多功能，windows下面也有类似的软件可以实现吗？为何非要（在Windows环境下）去用Linux的环境（中的软件）呢？</para>
+    <para>那是因为，等你对Linux有更多了解的时候，就会发现，Linux下面的很多很多的更强大的功能，是windows下面没有对应的功能，或者即使有，也不好用。</para>
+    <para>比如Linux世界中，最常用的项目编译过程管理的工具makefile，Windows下面的就没有足够好用的类似的工具，而且一般与Makefile搭配使用的其他很多别的工具，使得组合起来使用，可以实现非常强大且复杂的一些功能。</para>
+    <para>举个我个人所遇到的例子，对于Docbook环境的搭建，其实是可以使用Windows下的二进制的xsltproc+fop来实现的，但是由于我需要编译管理20+个book，如果编译每一个book，都需要手动去输入对应的编译命令的话，相关的工作量极大且极其繁琐，且容易出错，直接就把人累死了。而通过Cygwin中的makefile来实现，就相对轻松多了。写好了对应的makefile，就可以直接通过make html，make pdf等编译生成对应的html和pdf了。而在windows下面，类似的功能，我最多只能用batch批处理文件去实现，但是却缺少了Makefile中的依赖特性，其可以自动检测所依赖的文件是否已更新，决定是否重新编译。至此，windows的batch，已经比linux中的makefile差远了。另外，由于要生成chm等格式的文件，我此处还需要一些其他的辅助工具，比如用于转换编码的iconv，这类好用易用的各种工具，在Linux下面，都是必备的，但是如果想要在windows下使用，还要去一个个找到对应的windows下面的版本，或者找到相应的源码，自己去编译一个版本。如此，经常需要利用到Linux下面的各种强大好用的工具，但是windows下面常常没有或者有类似的但不好用或功能很弱，因此，才需要用到Cygwin去模拟Linux，在Linux下面，利用已有的各种工具，实现各种复杂的需求的。</para>
+    <para>随着软件开发的深入，至少我个人感觉，才能越加发现Linux的各种强大和好处。</para>
+</sect2>
+        
+<sect2 xml:id="cygwin_usage"><title>Cygwin的用途</title>
+    <para>不论是做偏底层的嵌入式开发，还是做上层软件的开发，都可能会用到Cygwin。</para>
+    <para>比如我就遇到过，嵌入式开发中，需要搭建Cygwin环境，以便可以在Windows下面实现项目的编译。</para>
+    <para>以及现在所遇到的，在Windows下面搭建Docbook环境，用于编译xml源码，发布资料等。</para>
+</sect2>
+        
+<sect2 xml:id="cygwin_version"><title>Cygwin的版本</title>
+    <para>cygwin的版本，涉及到两个东西。</para>
+    <para>一个是cygwin的核心==Cygwin DLL文件==cygwin1.dll，其最新版本，可以从<link xl:href="http://www.cygwin.com/">cygwin主页</link>上看到，此刻，2012-06-20，是1.7.15-1。</para>
+    <para>另外一个就是在线安装文件setup.exe的版本，其在安装过程中可以看到，比如<xref linkend="fg.cygwin_net_setup_program" />中的是2.774。</para>
+    <para>所以，如果你看到有人写的cygwin的版本是2.x的，那都是指的是setup.exe安装包的版本。如果写的是1.x.x的，那都是指的是核心的dll文件的版本。</para>
+</sect2>
+
+<sect2 xml:id="cygwin_install_guide"><title>Cygwin安装指南</title>
+    <sect3 xml:id="cygwin_install_methods"><title>Cygwin的安装方式</title>
+        <para>Cygwin的安装方式，总的来说，你一般所能见到的，有两种：</para>
+        <orderedlist>
+            <listitem>利用官网的setup.exe去下载安装
+                <para>Cygwin的官网中，有个安装文件setup.exe，其固定的不变的下载的地址是<link xl:href="http://cygwin.com/setup.exe">Cygwin的setup.exe</link>。</para>
+                <para>此setup.exe本身很小，比如此刻，2012-06-20，下载下来的setup.exe，就只有689KB：</para>
+                <informalfigure>
+                    <mediaobject>
+                        <imageobject role="html"><imagedata fileref="images/cygwin/installation/setup_exe_689kb.png" align="left" scalefit="0" width="100%"/></imageobject>
+                        <imageobject role="fo"><imagedata fileref="images/cygwin/installation/setup_exe_689kb.png" align="center" scalefit="0" width="100%"/></imageobject>
+                    </mediaobject>
+                </informalfigure>
+                <para>而这些在线下载或本地已有的文件，则是非常大，一般来说，都是多达1,2G，甚至3,4G，而安装完毕之后的cygwin则往往要占用5,6G甚至更多的硬盘空间。</para>
+                <para>当然，如果你安装时候所选择要安装的模块很少的话，占用硬盘空间则会相应变小一些，但估计也还是以GB为单位。</para>
+                <para></para>
+                <para>关于具体的安装过程，请参考<xref linkend="install_cygwin_setup_exe"/></para>
+            </listitem>
+            <listitem>利用本地已有的cygwin的ISO去本地安装
+                <para>你可能也许听说，有个Cygwin的ISO，也是用于安装Cygwin的。</para>
+                <para>而ISO中所包含的文件，就是一个setup.exe和下载下来的各个模块的安装包。</para>
+                <para>这些文件，其实就是上述通过setup.exe（在安装过程中）下载下来（并安装）的而已。</para>
+                <para>所以，并没有比setup.exe有啥特殊的地方。</para>
+                <para>不过，很明显，其有个最大的好处，那就是不用非要去通过setup.exe去在线下载和安装了。</para>
+                <para>因为，通过setup.exe去链接某个服务器，其速度往往不是那么快。</para>
+                <para>即便是目前对国内来说最快的163的服务器，速度已经很快了，但是还是没有（比如用迅雷）单独去下载ISO速度来得快。</para>
+                <para>所以，如果可以的话，还是ISO下载，来得快，然后本地安装，就避免了在线连接服务器去下载太慢的问题。</para>
+                <para>关于目前可用的ISO镜像的下载地址，请参考<xref linkend="cygwin_iso_download"/></para>
+            </listitem>
+        </orderedlist>
+        <tip xml:id="cygwin_iso_download"><title>目前已知的可用的Cygwin的ISO下载地址</title>
+            <para>关于可用的Cygwin的ISO，之前就整理过一些帖子：</para>
+            <para><link xl:href="http://www.crifan.com/web_download_cygwin_iso_download/">【网络资源下载】Cygwin ISO Download</link></para>
+            <para><link xl:href="http://www.crifan.com/order_cygwin_local_offline_starter_edition_download/">【整理】cygwin 本地 离线 精简版 下载</link></para>
+            <para>此处简要整理如下：</para>
+            <orderedlist>
+                <listitem>
+                    <para>之前的伯克利的那个地址：<link xl:href="http://inst.eecs.berkeley.edu/~instcd/iso/cygwin-cd-release-20050311.iso">700MB Cygwin ISO image </link>，已经不可用了。因为国内的人去下载的太多了，导致人家限制了ip范围，只允许其校内的ip，至少不允许国内的ip去下载了。</para>
+                </listitem>
+                <listitem>
+                    <para>我整理的那个iso：<link xl:href="http://www.verycd.com/topics/2908689/">《Cygwin完全版v2.738_20111105》(Cygwin_fullVersion_v2.738_20111105)2.738[光盘镜像]</link>，目前发现有点问题，暂时也不推荐下载了。等有空再去弄个可用的ISO。</para>
+                </listitem>
+                <listitem>
+                    <para>目前发现的，关于精简版本的cygwin iso，倒有几个，推荐一下：</para>
+                    <itemizedlist>
+                        <listitem>Cygwin 2.738 本地 离线 安装包 精简版 88M
+                            <para><link xl:href="http://download.csdn.net/detail/vivianke/3291998">cygwin离线安装包5-1</link></para>
+                            <para><link xl:href="http://download.csdn.net/detail/vivianke/3292027">cygwin离线安装包5-2</link></para>
+                            <para><link xl:href="http://download.csdn.net/detail/vivianke/3292059">cygwin离线安装包5-3</link></para>
+                            <para><link xl:href="http://download.csdn.net/detail/vivianke/3292086">cygwin离线安装包5-4</link></para>
+                            <para><link xl:href="http://download.csdn.net/detail/vivianke/3292114">cygwin离线安装包5-5</link></para>
+                        </listitem>
+                        <listitem>Cygwin 本地 离线 安装包 精简版 20M+
+                            <para><link xl:href="http://download.csdn.net/detail/qq280948982/3265007">Cygwin2.738本地安装包-Part1</link></para>
+                            <para><link xl:href="http://download.csdn.net/detail/qq280948982/3265174">Cygwin2.738本地安装包-Part2</link></para>
+                            <para><link xl:href="http://download.csdn.net/detail/qq280948982/3265188">Cygwin2.738本地安装包-Part3</link></para>
+                            <para><link xl:href="http://download.csdn.net/detail/qq280948982/3264982">Cygwin2.738本地安装包-Part4</link></para>
+                        </listitem>
+                    </itemizedlist>
+                </listitem>
+            </orderedlist>
+        </tip>
+    </sect3>
+    
+    <sect3 xml:id="install_cygwin_setup_exe"><title>Cygwin在线安装指南</title>
+        <para>下面详细解释Cygwin的setup.exe的安装过程：</para>
+        <sect4 xml:id="cygwin_first_install_gui"><title>Cygwin的setup.exe的安装首界面</title>
+            <para>双击setup.exe，则会出现安装界面：</para>
+            <figure xml:id="fg.cygwin_net_setup_program"><title>Cygwin Net Release Setup Program</title>
+                <mediaobject>
+                    <imageobject role="html"><imagedata fileref="images/cygwin/installation/1_cygwin_setup.png" align="left"   scalefit="0" width="100%"/></imageobject>
+                    <imageobject role="fo">  <imagedata fileref="images/cygwin/installation/1_cygwin_setup.png" align="center" scalefit="0" width="100%"/></imageobject>
+                </mediaobject>
+            </figure>
+            <para>可以看到，其中对于setup.exe，即此安装包，也是有对应的版本的，此处的是2.774。</para>
+        </sect4>
+        
+        <sect4 xml:id="install_method"><title>选择Cygwin的安装方式</title>
+            <para>点击“下一步”，出现“Choose installation type”界面：</para>
+            <informalfigure>
+                <mediaobject>
+                    <imageobject role="html"><imagedata fileref="images/cygwin/installation/2_choose_installation_type.png" align="left"   scalefit="0" width="100%"/></imageobject>
+                    <imageobject role="fo">  <imagedata fileref="images/cygwin/installation/2_choose_installation_type.png" align="center" scalefit="0" width="100%"/></imageobject>
+                </mediaobject>
+            </informalfigure>
+            <para>其中有三个选项：</para>
+            <itemizedlist>
+                <listitem>Install from internet(downloaded files will be kept for feature reuse)
+                    <para>从网上下载（下载下来的文件，也可以将来再用）</para>
+                    <para>其意思是，从网上下载的文件，存在本地硬盘后，以后万一遇到诸如某个模块被破坏了，不能用了，则可以再通过此setup.exe去重新安装一下，但是选择的是下面要说的第三项，即选择从本地某个文件夹安装，即此处之前下载好了的，效果相当于，windows中安装程序的修复功能。</para>
+                    <para>关于如何从网上下载安装，接下来会详细解释。</para>
+                </listitem>
+                <listitem>Download Without Installing
+                    <para>只下载不安装</para>
+                    <para>其用意，暂时没有完全搞懂。大概是为了先完全下载下来，然后方便选择性的安装自己需要的模块吧。</para>
+                </listitem>
+                <listitem>Install from Local Directory
+                    <para>为选择从本地安装</para>
+                    <para>上面已经提到了，其前提是，之前已经下载过了对应的所需的各个安装模块了，此时可以选择此项，去全新安装或者修复式安装某个模块。</para>
+                </listitem>
+            </itemizedlist>
+        </sect4>
+        
+        <sect4 xml:id="install_root_path"><title>选择Cygwin的安装根目录</title>
+            <para>点击“下一步”后，出现“Select Root Install Directory”的界面：</para>
+            <informalfigure>
+                <mediaobject>
+                    <imageobject role="html"><imagedata fileref="images/cygwin/installation/3_select_root_install_directory.png" align="left" scalefit="0" width="100%"/></imageobject>
+                    <imageobject role="fo"><imagedata fileref="images/cygwin/installation/3_select_root_install_directory.png" align="center" scalefit="0" width="100%"/></imageobject>
+                </mediaobject>
+            </informalfigure>
+            <para>其中Root Directory，指的是你所要将Cygwin安装到哪个目录。</para>
+            <para>默认为C:\cygwin，此处可以改为自己所要的路径，也可以用默认值，都可以。</para>
+            <para>我此处改为我所要的路径：E:\DevTools\Cygwin\cygwin_install</para>
+            <para>然后对于Install for，有两种选择：</para>
+            <itemizedlist>
+                <listitem>All User(RECOMMENDED)
+                    <para>为windows当前所有用户都有效。</para>
+                </listitem>
+                <listitem>Just Me
+                    <para>只对当前的windows用户有效。</para>
+                </listitem>
+            </itemizedlist>
+            <para>此处选择默认的，对所有用户都有效，即可。</para>
+        </sect4>
+        
+        <sect4 xml:id="local_download_path"><title>选择Cygwin的本地安装包下载路径</title>
+            <para>点击“下一步”后，进入“Select Local Package Directory”的界面：</para>
+            <informalfigure>
+                <mediaobject>
+                    <imageobject role="html"><imagedata fileref="images/cygwin/installation/4_select_local_package_directory.png" align="left" scalefit="0" width="100%"/></imageobject>
+                    <imageobject role="fo"><imagedata fileref="images/cygwin/installation/4_select_local_package_directory.png" align="center" scalefit="0" width="100%"/></imageobject>
+                </mediaobject>
+            </informalfigure>
+            <para>其中Local Package Directory部分，是由于前面选择的是从网上下载并安装，所以此处让你选择对于下载下来的各个模块的安装文件，都放在哪里，此处，根据自己需要，设置一个路径即可。</para>
+            <para>我此处设置为E:\download\cygwin\cygwin_down</para>
+            <tip><title>设置的路径（文件夹）最好是已经创建好的</title>
+                <para>不过要注意一点的是，确保你的设置的路径，是真实存在的，否则就会出现这样的错误提示了：</para>
+                <informalfigure>
+                    <mediaobject>
+                        <imageobject role="html"><imagedata fileref="images/cygwin/installation/error_no_dir_exist.png" align="left" scalefit="0" width="100%"/></imageobject>
+                        <imageobject role="fo"><imagedata fileref="images/cygwin/installation/error_no_dir_exist.png" align="center" scalefit="1" width="100%"/></imageobject>
+                    </mediaobject>
+                </informalfigure>
+                <para>当然，此时也是可以点击”是(Y)“去让其帮你创建对应的路径的。</para>
+            </tip>
+        </sect4>
+        
+        <sect4 xml:id="network_connection"><title>选择网络连接方式</title>
+            <para>然后就进入”Select Your Internet Connection“的界面了：</para>
+            <informalfigure>
+                <mediaobject>
+                    <imageobject role="html"><imagedata fileref="images/cygwin/installation/5_select_your_internet_connection.png" align="left" scalefit="0" width="100%"/></imageobject>
+                    <imageobject role="fo"><imagedata fileref="images/cygwin/installation/5_select_your_internet_connection.png" align="center" scalefit="0" width="100%"/></imageobject>
+                </mediaobject>
+            </informalfigure>
+            <para>此时对于网络连接方式，有几种选择：</para>
+            <itemizedlist>
+                <listitem>Direct Connection
+                    <para>一般多数用户都是这种直接连接的网络，所以都是直接使用默认设置即可。</para>
+                </listitem>
+                <listitem>Use Internet Explorer Proxy Settings
+                    <para>使用IE代理设置，如果你本身上网是通过代理上的，且IE中已经设置好了代理，那么就可以用此种设置了。</para>
+                </listitem>
+                <listitem>Use HTTP/FTP Proxy
+                    <para>使用HTTP或FTP类型的代理。同理，如果有需要，自己选择此项后，设置对应的代理地址和端口，即可。</para>
+                </listitem>
+            </itemizedlist>
+        </sect4>
+        
+        <sect4 xml:id="remote_server"><title>选择（所要连接的）服务器（去用于后续下载文件）</title>
+            <para>点击”下一步“后，其会自动去下载一个服务器的列表，然后跳转到”Choose A Download Site“的界面：</para>
+            <figure xml:id="fg.choose_download_site"><title>Choose A Download Site</title>
+                <mediaobject>
+                    <imageobject role="html"><imagedata fileref="images/cygwin/installation/6_choose_a_download_site.png" align="left" scalefit="0" width="100%"/></imageobject>
+                    <imageobject role="fo"><imagedata fileref="images/cygwin/installation/6_choose_a_download_site.png" align="center" scalefit="0" width="100%"/></imageobject>
+                </mediaobject>
+            </figure>
+            <para>此处需要选择一个服务器，之后就是从该服务器下载对应的安装所需的模块文件了。</para>
+            <para>因此，此处如果选择的服务器不合适的话，尽管你的网络本身速度很快，但是此处下载速度很慢。</para>
+            <para>所以，此处需要选择一个速度比较快的服务器。</para>
+            <para>对于国内来说，连接很多国外的服务器，速度一般都很慢。</para>
+            <para>不过，目前已经的，口碑较好的，速度较快的服务器，是近几年刚出现的163的服务器。</para>
+            <para>所以，此处对于多数人，最好的选择就是选择163的服务器。</para>
+            <para>此处，我这里，由图可见，已经默认选择好了163的服务器，所以不需要额外设置了。</para>
+            <para>如果你的选择其他的服务器，而且服务器列表中也找不到163的话，那么可以自己手动添加：</para>
+            <para>在Use URL处，输入：<screen>http://mirrors.163.com/cygwin/</screen></para>
+            <tip><title>关于163镜像服务器</title>
+                <para>163是个好公司，因为刚看到<link xl:href="http://mirrors.163.com/.help/" />中的介绍，得知其前身就是cn99镜像。</para>
+                <para>之前玩过Ubuntu的人，估计多数都知道cn99这个镜像，因为对于国内来说，apt的源的地址中，数其速度最快。</para>
+                <para>而且，现又发现，163的镜像，除了提供cygwin，其还提供了其他很多资源的镜像，都可以在<link xl:href="http://mirrors.163.com/" />中找到。</para>
+                <para>包括很多常见的，比如mandriva，openSUSE,ubuntu等等。</para>
+            </tip>
+            <tip><title>为何手动添加URL时，输入的是<link xl:href="http://mirrors.163.com/cygwin/" />而不是<link xl:href="http://mirrors.163.com/" /></title>
+                <para>首先要说的是，直接输入在<xref linkend="fg.choose_download_site"/>中所看的的地址<link xl:href="http://mirrors.163.com/" />，是无法正常连接163服务器去下载cygwin的。</para>
+                <para>这也是我之前在<link xl:href="http://www.crifan.com/records_record_cygwin_download_process/">【记录】Cygwin下载过程记录</link>中所遇到兵解决了的问题。</para>
+                <para>而具体的原因是为何，我也是刚刚才注意到的：</para>
+                <para>因为cygwin去安装的话，不论是在线安装还是本地安装，都会需要一个对应的配置文件：<filename>setup.ini</filename>，而你打开<link xl:href="http://mirrors.163.com/" />中，是找不到对应的setup.ini的，但是在<link xl:href="http://mirrors.163.com/cygwin/" />中是可以找到对应的setup.ini的。</para>
+                <para>因此，你给cygwin的setup.exe指定了<link xl:href="http://mirrors.163.com/" />后，其从此URL中，找不到对应的setup.ini，所以无法继续安装cygwin。</para>
+                <para>所以URL中需要输入<link xl:href="http://mirrors.163.com/cygwin/" />。</para>
+            </tip>
+        </sect4>
+        
+        <sect4 xml:id="modules_to_install"><title>选择需要安装的模块（安装包）</title>
+            <para>点击“下一步”后，其会解析一下，然后进入”Select Package“的界面：</para>
+            <informalfigure>
+                <mediaobject>
+                    <imageobject role="html"><imagedata fileref="images/cygwin/installation/7_select_packages.png" align="left" scalefit="0" width="100%"/></imageobject>
+                    <imageobject role="fo"><imagedata fileref="images/cygwin/installation/7_select_packages.png" align="center" scalefit="1" width="100%"/></imageobject>
+                </mediaobject>
+            </informalfigure>
+            <para>此界面，才是整个Cygwin安装过程中的最重要，最需要详细讲解的部分。</para>
+            <sect5 xml:id="modules_category"><title>Cygwin中模块的各种分类</title>
+                <para>先来说说，那一堆的列表。</para>
+                <para>可以看到，其有Accesibility，Base，Devel，Editors，Math等很多的部分。</para>
+                <para>这些，是总体的分类，对于Cygwin中所包含的N个模块的分门别类。</para>
+                <para>此处，对于安装Cygwin来说，就是安装各种各样的模块而已。</para>
+                <para>具体安装什么模块，则是根据你自己的需要，去选择不同的模块。</para>
+                <para>而对于大多数人，尤其是不熟悉的人，其实，最核心的，要记住的一点，那就是，记住一定要安装Devel这个部分的模块，其中包含了各种开发所用到的工具或模块。</para>
+                <para>而对于其他部分的设置，如果不熟悉，那么可以直接使用默认配置即可。</para>
+            </sect5>
+            
+            <sect5 xml:id="check_installed"><title>Cygwin中如何查看某分类下，默认已经安装了哪些模块</title>
+                <para>下面再来解释一下，如何选择或者取消对应的模块。</para>
+                <para>可以看到，其默认的各个分类后面的是Default字样，其意思很明显，就是cygwin帮我们设置好的，默认的选择安装了一些模块，其具体包含哪些模块，可以通过点击对应的分类前面的加号以展开。</para>
+                <para>以Devel为例：</para>
+                <para>点击加号：</para>
+                <informalfigure>
+                    <mediaobject>
+                        <imageobject role="html"><imagedata fileref="images/cygwin/installation/devel_plus_sign.png" align="left" scalefit="0" width="100%"/></imageobject>
+                        <imageobject role="fo"><imagedata fileref="images/cygwin/installation/devel_plus_sign.png" align="center" scalefit="0" width="100%"/></imageobject>
+                    </mediaobject>
+                </informalfigure>
+                <para>然后就可以看到，cygwin已经默认帮忙选择了哪些安装哪些模块：</para>
+                <informalfigure>
+                    <mediaobject>
+                        <imageobject role="html"><imagedata fileref="images/cygwin/installation/devel_def_many_no_install.png" align="left" scalefit="0" width="100%"/></imageobject>
+                        <imageobject role="fo"><imagedata fileref="images/cygwin/installation/devel_def_many_no_install.png" align="center" scalefit="1" width="100%"/></imageobject>
+                    </mediaobject>
+                </informalfigure>
+                <para>可以看到，有很多n/a的标示，其表示Not Avalibale不可用，此处即为不安装的意思，对应的模块的前面也写的是Skip，同样是跳过安装此模块的意思。</para>
+                <para>而对应方括号中间打叉，表示的是选择安装该模块，上图中即为选择安装gettext这个模块。</para>
+            </sect5>
+            
+            <sect5 xml:id="cancel_modole"><title>cygwin中如何取消/选择安装单个模块</title>
+                <para>而想要安装某单个模块，比如gdb模块的话，那么就是对着那个skip前面的图标，点击一下，然后就可以看到gdb模块被选中了，表示安装此模块：</para>
+                <informalfigure>
+                    <mediaobject>
+                        <imageobject role="html"><imagedata fileref="images/cygwin/installation/click_to_choose_install_gdb.png" align="left" scalefit="0" width="100%"/></imageobject>
+                        <imageobject role="fo"><imagedata fileref="images/cygwin/installation/click_to_choose_install_gdb.png" align="center" scalefit="1" width="100%"/></imageobject>
+                    </mediaobject>
+                </informalfigure>
+            </sect5>
+            
+            <sect5 xml:id="multi_operation"><title>Cygwin中如何取消/选择/重新/卸载安装某分类下的所有模块</title>
+                <para>很明显，如果想要对几十个，几百个模块都想要安装的话，如果都要一个个点击，那岂不是累死了。</para>
+                <para>对此，cygwin早就想好了，给我们提供了更方便的设置，那就是，对于此Devel分类下面的所有的模块，如果你想要都安装，那么可以点击Devel后面的那个Default：</para>
+                <informalfigure>
+                    <mediaobject>
+                        <imageobject role="html"><imagedata fileref="images/cygwin/installation/click_devel_default.png" align="left" scalefit="0" width="100%"/></imageobject>
+                        <imageobject role="fo"><imagedata fileref="images/cygwin/installation/click_devel_default.png" align="center" scalefit="1" width="100%"/></imageobject>
+                    </mediaobject>
+                </informalfigure>
+                <para>那么Default就会变成Install，同时，其下所有的模块，也都变成选择安装了：</para>
+                <informalfigure>
+                    <mediaobject>
+                        <imageobject role="html"><imagedata fileref="images/cygwin/installation/install_all_devel.png" align="left" scalefit="0" width="100%"/></imageobject>
+                        <imageobject role="fo"><imagedata fileref="images/cygwin/installation/install_all_devel.png" align="center" scalefit="1" width="100%"/></imageobject>
+                    </mediaobject>
+                </informalfigure>
+                <para>对应的，再次点击Install，则会变成Reinstall，对应的Devel下面的各个模块，也都变成相应的skip了：</para>
+                <informalfigure>
+                    <mediaobject>
+                        <imageobject role="html"><imagedata fileref="images/cygwin/installation/reinstall_all_devel.png" align="left" scalefit="0" width="100%"/></imageobject>
+                        <imageobject role="fo"><imagedata fileref="images/cygwin/installation/reinstall_all_devel.png" align="center" scalefit="1" width="100%"/></imageobject>
+                    </mediaobject>
+                </informalfigure>
+                <para>此处对于reinstall之所以变成skip，那是因为之前就没有安装过，所以此处对于之前没有安装过的模块，就是变成skip，即也不安装了。而如果你是第二次运行此cygwin安装程序，那么对于那些之前安装过的，则会变成对应的reinstall的。</para>
+                <para>同理，点击Reinstall，则又会变成Uninstall：</para>
+                <informalfigure>
+                    <mediaobject>
+                        <imageobject role="html"><imagedata fileref="images/cygwin/installation/uninstall_devel.png" align="left" scalefit="0" width="100%"/></imageobject>
+                        <imageobject role="fo"><imagedata fileref="images/cygwin/installation/uninstall_devel.png" align="center" scalefit="1" width="100%"/></imageobject>
+                    </mediaobject>
+                </informalfigure>
+                <para>含义很明显，卸载对应的模块的意思。</para>
+                <para>如此，对于某个分类，点击对应的后面的安装选项的话，会在：Default，Install，Reinstall，Uninstall这几个选项之间来回切换。</para>
+            </sect5>
+            
+            <sect5 xml:id="search_to_check"><title>Cygwin中如何知道某个模块是否已经选择安装了</title>
+                <para>而对于想要知道某个库，或者说模块，程序等，是否已经选择安装了，</para>
+                <para>多数人都会被cygwin里面太多的模块而搞晕掉，所以其提供了一个Search的功能。</para>
+                <para>比如，我想要去确定（用于搭建Docbook环境所必须的其中）一个叫做libxml2的模块，</para>
+                <para>那么就可以去search框中输入libxml2，则其会自动把与此libxml2相关的模块，都列出来：</para>
+                <informalfigure>
+                    <mediaobject>
+                        <imageobject role="html"><imagedata fileref="images/cygwin/installation/search_libxml2.png" align="left" scalefit="0" width="100%"/></imageobject>
+                        <imageobject role="fo"><imagedata fileref="images/cygwin/installation/search_libxml2.png" align="center" scalefit="0" width="100%"/></imageobject>
+                    </mediaobject>
+                </informalfigure>
+                <para>不过由于各个子分类都是加号，没有展开的，所以点击加号，全部展开：</para>
+                <informalfigure>
+                    <mediaobject>
+                        <imageobject role="html"><imagedata fileref="images/cygwin/installation/has_installed_libxml2-devel.png" align="left" scalefit="0" width="100%"/></imageobject>
+                        <imageobject role="fo"><imagedata fileref="images/cygwin/installation/has_installed_libxml2-devel.png" align="center" scalefit="1" width="100%"/></imageobject>
+                    </mediaobject>
+                </informalfigure>
+                <para>可以看到此处已经安装了Devel中的libxml2-devel这个模块了，其已经基本满足开发需求了。</para>
+                <para>但是很多时候，我们可能对于剩下的其他的与此libxml2相关的模块，不是很清楚其功能，不知道是否需要安装，那么此时，其实最简单省事的办法就是，把相关的模块，都点击Skip，直到都变成Install：</para>
+                <informalfigure>
+                    <mediaobject>
+                        <imageobject role="html"><imagedata fileref="images/cygwin/installation/select_all_libxml2.png" align="left" scalefit="0" width="100%"/></imageobject>
+                        <imageobject role="fo"><imagedata fileref="images/cygwin/installation/select_all_libxml2.png" align="center" scalefit="1" width="100%"/></imageobject>
+                    </mediaobject>
+                </informalfigure>
+                <para>如此，就不怕漏装某个libxml2的库，而导致以后需要回来重新安装了。</para>
+                <para>如此，安装自己需求，一点点去选择自己需要的模块，即可。</para>
+            </sect5>
+            
+            <sect5 xml:id="important_hint"><title>关于安装Cygwin模块方面的最简单，最核心的提示</title>
+                <para>还是那句话，对于新手，很多不清楚各个模块的作用：</para>
+                <para>那么最简单的做法是，全部都选上。</para>
+                <para>当然觉得全部都选上，又太浪费下载时间和安装后的空间的话，那么最为开发用途的cygwin，则至少可以把<emphasis>Base，Devel，Libs，Net，System，Utils</emphasis>等这几个最基本的分类下面的模块都选上.</para>
+                <para>即点击<emphasis>Base，Devel，Libs，Net，System，Utils</emphasis>的Default，使其都变成Install即可：</para>
+                <informalfigure>
+                    <mediaobject>
+                        <imageobject role="html"><imagedata fileref="images/cygwin/installation/common_modules_all.png" align="left" scalefit="0" width="100%"/></imageobject>
+                        <imageobject role="fo"><imagedata fileref="images/cygwin/installation/common_modules_all.png" align="center" scalefit="0" width="100%"/></imageobject>
+                    </mediaobject>
+                </informalfigure>
+                <para>当然，如果对于这些，你还嫌弃还是太多，那么就只选择Devel，也基本够你日常开发所用了。</para>
+            </sect5>
+        </sect4>
+        
+        <sect4 xml:id="install_to_complete"><title>安装所选模块直至完成</title>
+            <para>选择好需要安装的模块后，就可以点击”下一步“去安装了。</para>
+            <para>然后后面就很简单了，基本上都是下一步，然后cygwin就会自动去下载并安装对应的模块了。</para>
+            <para>这个过程所需时间，取决于你所选模块的多少，和连接（前面所设置的163）服务器的速度快慢，决定了下载所用时间，以及最后加上安装所有模块的时间，总体上来说，应该都是以小时为单位，比如2,3个小时之类的时间。</para>
+            <para>最后安装完毕，会在桌面出现一个cygwin的图标，双击后，第一次运行，其会初始化一下，之后就是正常的使用Linux的环境了。</para>
+            <tip><title>关于安装到最后有时候会死掉的解决办法</title>
+                <para>如果遇到了安装到最后，比如95%的时候死掉的问题，可以参考：</para>
+                <para><link xl:href="http://www.crifan.com/records_record_cygwin_download_process/">【记录】Cygwin下载过程记录</link></para>
+            </tip>
+        </sect4>
+
+        <tip xml:id="offline_install_cygwin"><title>离线安装Cygwin</title>
+            <para>离线安装Cygwin，即从本地安装，其安装方法，和上面的从setup.exe安装相比，主要的不同点就是选择从本地安装，剩下的过程都类似，就不多解释了。</para>
+        </tip>
+    </sect3>
+</sect2>
+
+<sect2 xml:id="cygwin_common_modules"><title>Cygwin中部分模块功能简介</title>
+    <para>此处，针对Cygwin中的一些模块，工具，库等，做个简单的介绍。当然，实际上，这些东西，其实都是Linux中的常见工具，库等，此处，只是针对我所了解的一些，做个解释，仅供参考：</para>
+    <itemizedlist>
+        <listitem>iconv
+            <informalfigure>
+                <mediaobject>
+                    <imageobject role="html"><imagedata fileref="images/cygwin/modules/module_iconv.png" align="left" scalefit="0" width="100%"/></imageobject>
+                    <imageobject role="fo"><imagedata fileref="images/cygwin/modules/module_iconv.png" align="center" scalefit="1" width="100%"/></imageobject>
+                </mediaobject>
+            </informalfigure>
+            <para>是个针对编码转换的工具，其支持很多常见的编码，包括UTF-8，GB2312等等。</para>
+            <para>比如我在<link xl:href="http://www.crifan.com/use_docbook_output_htmlhelp_fix_messy_cn_char_of_chm_title_and_toc_index/">生成Docbook的chm格式文件</link>的时候，就用到将UTF-8编码的文件，转换为本地编码（GB18030编码）的格式，就是用的iconv这个工具。</para>
+            <para>详情可参考<link xl:href="http://zh.wikipedia.org/wiki/Iconv">iconv</link></para>
+        </listitem>
+        <listitem>libxml2
+            <informalfigure>
+                <mediaobject>
+                    <imageobject role="html"><imagedata fileref="images/cygwin/modules/module_libxml2.png" align="left" scalefit="0" width="100%"/></imageobject>
+                    <imageobject role="fo"><imagedata fileref="images/cygwin/modules/module_libxml2.png" align="center" scalefit="1" width="100%"/></imageobject>
+                </mediaobject>
+            </informalfigure>
+            <para>和xml解析相关的核心库，可被很多其他程序，工具用到。比如<link xl:href="http://www.crifan.com/files/doc/docbook/docbook_dev_note/release/html/docbook_dev_note.html#download_xsltproc_win">docbook所用工具xsltproc</link>。</para>
+            <para>详情可参考<link xl:href="http://zh.wikipedia.org/wiki/Libxml2">libxml2</link></para>
+        </listitem>
+        <listitem>libxslt
+            <informalfigure>
+                <mediaobject>
+                    <imageobject role="html"><imagedata fileref="images/cygwin/modules/module_libxslt.png" align="left" scalefit="0" width="100%"/></imageobject>
+                    <imageobject role="fo"><imagedata fileref="images/cygwin/modules/module_libxslt.png" align="center" scalefit="1" width="100%"/></imageobject>
+                </mediaobject>
+            </informalfigure>
+            <para>xslt是一种语言，用来描述如何将xml转换为别的格式的文件。此库常被别的程序所用到，比如：<link xl:href="http://www.crifan.com/files/doc/docbook/docbook_dev_note/release/html/docbook_dev_note.html#download_xsltproc_win">docbook所用工具xsltproc</link>。</para>
+        </listitem>
+        <listitem>zlib
+            <informalfigure>
+                <mediaobject>
+                    <imageobject role="html"><imagedata fileref="images/cygwin/modules/module_zlib.png" align="left" scalefit="0" width="100%"/></imageobject>
+                    <imageobject role="fo"><imagedata fileref="images/cygwin/modules/module_zlib.png" align="center" scalefit="1" width="100%"/></imageobject>
+                </mediaobject>
+            </informalfigure>
+            <para>最常用的压缩工具之一。</para>
+        </listitem>
+        <listitem>openSSH
+            <informalfigure>
+                <mediaobject>
+                    <imageobject role="html"><imagedata fileref="images/cygwin/modules/module_openssh.png" align="left" scalefit="0" width="100%"/></imageobject>
+                    <imageobject role="fo"><imagedata fileref="images/cygwin/modules/module_openssh.png" align="center" scalefit="1" width="100%"/></imageobject>
+                </mediaobject>
+            </informalfigure>
+            <para>SSH是用来建立加密的安全连接的。相对于普通的非加密链接，提高了安全性。而此openssh是个开源免费的，用的最广泛的一个ssh的实现。</para>
+        </listitem>
+    </itemizedlist>
+</sect2>
+
+<sect2 xml:id="cygwin_utilities"><title>Cygwin中的一些工具</title>
+    <para>此处主要指的是和Cygwin本身有关的一些工具。</para>
+    <para>关于Cygwin的工具，其实cygwin官网中已有详细介绍了：<link xl:href="http://cygwin.com/cygwin-ug-net/using-utils.html">Cygwin Utilities</link>，此处只是简单解释一下，以及提醒一些注意事项：</para>
+    
+    <sect3 xml:id="cygcheck"><title>cygcheck</title>
+        <para>作用：用于检测，校验cygwin。</para>
+        <para>如果cygwin本身的运行有问题了，比如缺少了某库，导致程序无法运行，则可以使用此工具，去检测到底问题出在哪里。</para>
+        <para>比如：<link xl:href="http://www.crifan.com/cygwin_run_app_error_while_loading_shared_libraries_cannot_open_shared_object_file_no_such_file_or_directory/">【基本解决】Cygwin中运行程序出现错误：error while loading shared libraries: ?: cannot open shared object file: No such file or directory</link></para>
+    </sect3>
+    
+    <sect3 xml:id="cygpath"><title>cygpath</title>
+        <para>作用：实现Linux/Unix和Windows之间的路径转换。</para>
+        <para>其中，主要包含了Windows路径中反斜杠和Linux路径中的斜杠之间的转换，已经Windows下面的环境变量和Linux下面的环境变量的处理。</para>
+        <para>而环境变量中，又包含，多个值所用分隔符的不同，Windows是分号，Linux是冒号。</para>
+        <para>不过好像当Linux和Windows的环境变量混用，有时候，会出现一些bug，比如<link xl:href="http://www.crifan.com/fop_java_lang_noclassdeffounderror_xmlgraphics_cygpath_bug_path_truncated/">【终极解决】fop错误：Exception in thread "main" java.lang.NoClassDefFoundError:org/apache/xmlgraphics/image/loader/ImageContext 的终极解决办法，即cygpath有bug，转换路径出错，导致部分路径被截断</link></para>
+    </sect3>
+    
+</sect2>
+
+
+<sect2 xml:id="cygwin_tricks"><title>Cygwin中的一些小技巧</title>
+    <para>下面介绍一些Cygwin中相关的小技巧：</para>
+    
+    <sect3 xml:id="right_menu_run_cygwin"><title>Windows下，添加右键打开Cygwin</title>
+        <para>打开注册表（regedit）并定位到HKEY_CLASSES_ROOT\Directory\shell</para>
+        <note>不熟悉windows注册表regedit的，请去看<xref linkend="win_regedit" /></note>
+        <para>然后右击shell->新建->项，然后名字随便起，比如RunCygwin</para>
+        <para>在其下再新建一项,叫做command,表示要执行的命令,command下会有一个图标是ab字样的键值，名称是(默认)，类型是REG_SZ，</para>
+        <para>双击其会弹出一个"修改字符串"的窗口,修改数据数值为:</para>
+        <screen>D:\tmp\tmp_dev_root\cgwin\bin\bash -login -c "cd '%1'; exec bash -rcfile ~/.bashrc"</screen>
+        <para>其中D:\tmp\tmp_dev_root\cgwin\是我此处Cygwin安装路径下的bash的位置，其下会存在bash工具：bin\bash</para>
+        <informalfigure>
+            <mediaobject>
+                <imageobject role="html"><imagedata fileref="images/cygwin/right_menu/runcygwin command.png" align="left"   scalefit="0" width="100%" /></imageobject>
+                <imageobject role="fo">  <imagedata fileref="images/cygwin/right_menu/runcygwin command.png" align="center" scalefit="1" width="100%"/></imageobject>
+            </mediaobject>
+        </informalfigure>
+        <para>然后就可以进入任何目录,右键点击,就会看到对应的可选项,此处是RunCygwin：</para>
+        <informalfigure>
+            <mediaobject>
+                <imageobject role="html"><imagedata fileref="images/cygwin/right_menu/right_click_runcygwin.png" align="left"   scalefit="0" width="100%" /></imageobject>
+                <imageobject role="fo">  <imagedata fileref="images/cygwin/right_menu/right_click_runcygwin.png" align="center" scalefit="1" width="100%"/></imageobject>
+            </mediaobject>
+        </informalfigure>
+        <para>点击即可进入cygwin了：</para>
+        <informalfigure>
+            <mediaobject>
+                <imageobject role="html"><imagedata fileref="images/cygwin/right_menu/cygwin_run.png" align="left"   scalefit="0" width="100%" /></imageobject>
+                <imageobject role="fo">  <imagedata fileref="images/cygwin/right_menu/cygwin_run.png" align="center" scalefit="1" width="100%"/></imageobject>
+            </mediaobject>
+        </informalfigure>
+        <para>关于更多的相关的解释，请参考：<link xl:href="http://www.crifan.com/finishing_in_the_windows_makes_it_possible_to_add_the_right_to_run_cygwin_and_navigate_directly_to_the_current_folder__finishing_in_windows_xp_right-add_command_line_cmd_command_open_the_current_folde/">【整理】在windows下添加右键使得可以运行cygwin且直接定位到当前文件夹 + 【整理】如何在Windows XP中，右键添加命令行cmd command，打开当前文件夹，定位到当前路径</link></para>
+    </sect3>
+    
+    <sect3 xml:id="change_def_cygwin_path"><title>修改Cygwin的默认启动路径</title>
+        <para>原先启动Cygwin，其默认路径是当前用户的Home文件夹：</para>
+        <screen>
+CLi@PC-CLI-1 ~
+$ pwd
+/home/CLi
+        </screen>
+        <para>而Cygwin默认启动路径，就是由环境变量HOME的值决定的。</para>
+        <para>因此，此处就是要去改变对应的环境变量HOME的值。</para>
+        <para></para>
+        <para>此处，先去看看原先HOME的值是多少，有两种方法：</para>
+        <itemizedlist>
+            <listitem>
+                <para>可以在cygwin下输入env查看当前所有的环境变量：</para>
+                <screen>
+CLi@PC-CLI-1 ~
+$ env
+HOMEPATH=\Users\CLi
+...
+SHELL=/bin/bash
+TERM=xterm
+...
+CommonProgramFiles(x86)=C:\Program Files (x86)\Common Files
+OS=Windows_NT
+...
+HOME=/home/CLi
+...
+                </screen>
+                <para>其中就可以看到，此处的HOME值为/home/CLi</para>
+            </listitem>
+            <listitem>
+                <para>直接通过echo一个环境变量，得知该环境变量的值：</para>
+                <screen>
+CLi@PC-CLI-1 ~
+$ echo $HOME
+/home/CLi
+                </screen>
+            </listitem>
+        </itemizedlist>
+        <para>而想要改变HOME的值，也有两种方法：</para>
+        <itemizedlist>
+            <listitem>
+                <para>去windows中建立一个HOME的环境变量，将值设置为自己想要的值</para>
+                <para>而关于如何添加Windows的环境变量，不熟悉的人，请参考<xref linkend="add_new_win_env_var" /></para>
+            </listitem>
+            <listitem>
+                <para>通过export去修改环境变量：</para>
+                <screen>
+CLi@PC-CLI-1 ~
+$ echo $HOME
+/home/CLi
+
+CLi@PC-CLI-1 ~
+$ export HOME=/home/CLi/develop
+
+CLi@PC-CLI-1 /home/CLi
+$ echo $HOME
+/home/CLi/develop
+                </screen>
+                <para>即可把HOME从/home/CLi改为/home/CLi/develop</para>
+                <note>此处通过export的方式改变的值，只是当前（会话/窗口）有效，关闭了窗口后，就失效了，所以下次重启后，还是无法达到修改的效果</note>
+            </listitem>
+        </itemizedlist>
+    </sect3>
+        
+    <sect3 xml:id="change_cygwin_to_other_drive"><title>切换当前路径到别的磁盘，比如C盘，D盘等</title>
+        <para>Cygwin下，从当前路径切换到Windows中别的磁盘，比如C盘，之前的做法，是通过cygdrive：</para>
+        <screen>
+CLi@PC-CLI-1 /cygdrive/c
+$ pwd
+/cygdrive/c
+
+CLi@PC-CLI-1 /cygdrive/c
+$ cd /cygdrive/d
+
+CLi@PC-CLI-1 /cygdrive/d
+$ pwd
+/cygdrive/d
+        </screen>
+        <para>现在刚看到<xref linkend="ref.cygwin_env" />，才知道也可以直接通过C:的形式去切换到C盘了：</para>
+        <screen>
+CLi@PC-CLI-1 /home/CLi
+$ pwd
+/home/CLi
+
+CLi@PC-CLI-1 /home/CLi
+$ cd C:
+
+CLi@PC-CLI-1 /cygdrive/c
+$ pwd
+/cygdrive/c
+        </screen>
+    </sect3>
+    
+</sect2>
+
+</sect1>

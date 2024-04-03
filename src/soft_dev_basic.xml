@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<!DOCTYPE book
+[
+
+<!ENTITY cur_book_name      "soft_dev_basic" >
+<!ENTITY publish_date       "2015-04-24" >
+<!ENTITY release_version    "1.2" >
+
+<!ENTITY copyrith_year "2015" >
+<!ENTITY entity_common_multi_format     SYSTEM  "../../entity_common_multi_format.xml">
+<!ENTITY entity_common_publish_info     SYSTEM  "../../entity_common_publish_info.xml">
+]>
+
+<book version="5.0"
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xl="http://www.w3.org/1999/xlink"
+    
+    xml:lang="zh_CN"
+    >
+<info>
+    <title>软件开发基础知识</title>
+    <subtitle></subtitle>
+    <keywordset>
+        <keyword>软件开发</keyword>
+        <keyword>基础知识</keyword>
+        <keyword>上层软件</keyword>
+        <keyword>嵌入式软件</keyword>
+    </keywordset>
+    
+    <abstract>
+        <para>本文主要介绍了软件开发的相关基础知识,主要包括上层软件和嵌入式方面的，比如Cygwin，Windows中的cmd，环境变量，注册表编辑器regedit，Linux的shell，开源协议，Java等。并且推荐了一些值得看的资料。</para>
+        &entity_common_multi_format;
+    </abstract>
+
+    <revhistory>
+        <revision>
+            <revnumber>&release_version;</revnumber>
+            <date>&publish_date;</date>
+            <revremark>
+                <orderedlist>
+                    <listitem>将Cygwin单独整理出独立的book</listitem>
+                    <listitem>添加其他一些软件开发基础知识</listitem>
+                    <listitem>把部分图片从skydrive地址改为本地地址</listitem>
+                    <listitem>更新嵌入式系列教程</listitem>
+                </orderedlist>
+            </revremark>
+            <authorinitials>crl</authorinitials>
+        </revision>
+        <revision>
+            <revnumber>0.8</revnumber>
+            <date>2012-11-26</date>
+            <revremark>
+                <orderedlist>
+                    <listitem>完成此文逻辑框架</listitem>
+                    <listitem>添加了windows下的环境变量部分的内容</listitem>
+                    <listitem>添加了Cygwin的内容</listitem>
+                    <listitem>添加了Cygwin中的工具和小技巧</listitem>
+                    <listitem>添加了Windows的regedit和cmd</listitem>
+                    <listitem>添加了Windows的Microsoft .NET Framework</listitem>
+                </orderedlist>
+            </revremark>
+            <authorinitials>crl</authorinitials>
+        </revision>
+    </revhistory>
+
+    &entity_common_publish_info;
+</info>
+
+<xi:include href="preface.xml" />
+<xi:include href="ch01_basic_intro.xml" />
+<xi:include href="ch02_common_basic.xml" />
+<xi:include href="ch03_embedded_basic.xml" />
+<xi:include href="ch04_upper_layer_basic.xml" />
+<xi:include href="appendix.xml" />
+<xi:include href="reference.xml" />
+
+</book>

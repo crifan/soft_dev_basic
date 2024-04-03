@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<!DOCTYPE chapter
+[
+
+<!ENTITY % crl_ent PUBLIC "crl.ent" 'http://www.crifan.com/files/res/docbook/entity/crl.ent'>
+%crl_ent;
+
+]>
+<chapter    xml:id="basic_intro"
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xl="http://www.w3.org/1999/xlink"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:ns5="http://www.w3.org/1998/Math/MathML"
+    xmlns:ns4="http://www.w3.org/1999/xhtml"
+    xmlns:ns3="http://www.w3.org/2000/svg"
+    xmlns:ns="http://docbook.org/ns/docbook">
+<title>软件开发简介</title>
+<para></para>
+<para></para>
+<para>计算机软件开发，涉及到很多基础方面的背景知识</para>
+<para>只有搞懂了了这些基础方面的知识之后</para>
+<para>后续的软件开发，才可能得心应手</para>
+<para></para>
+
+<sect1 xml:id="language_summary"><title>常见的计算机语言简介和总结</title>
+    <para>计算机世界中，现存很多种计算机语言</para>
+    <para>比如常见的C，C++，Java，C#，Python，Ruby，等等</para>
+    <para>对于这些常见的语言的一些总结，可以参考教程：</para>
+    <para><link xl:href="http://www.crifan.com/files/doc/docbook/language_summary/release/html/language_summary.html">各种计算机语言简介和总结</link></para>
+</sect1>
+
+<sect1 xml:id="programming_language_basic"><title>计算机编程语言基础知识</title>
+    <para>而对于这些常见的计算机语言</para>
+    <para>其实很多核心的概念和逻辑是相同的，通用的</para>
+    <para>所以，后来又专门写教程，去总结这些基本的，核心的，通用的概念和逻辑</para>
+    <para>感兴趣的可参考：</para>
+    <para><link xl:href="http://www.crifan.com/files/doc/docbook/programming_language_basic/release/html/programming_language_basic.html">计算机编程语言基础知识</link></para>
+</sect1>
+
+</chapter>

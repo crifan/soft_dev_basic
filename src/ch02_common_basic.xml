@@ -1,0 +1,628 @@
+<?xml version='1.0' encoding="utf-8"?>
+
+<!DOCTYPE chapter
+[
+
+<!ENTITY % crl_ent PUBLIC "crl.ent" 'http://www.crifan.com/files/res/docbook/entity/crl.ent'>
+%crl_ent;
+
+]>
+
+<chapter
+    xmlns="http://docbook.org/ns/docbook"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xl="http://www.w3.org/1999/xlink"
+    
+    xml:id="ch02_common_basic">
+<title>通用软件开发基础知识</title>
+<abstract></abstract>
+
+<sect1 xml:id="cygwin"><title>Cygwin</title>
+	<para>如果想要在Windows下折腾Linux方面的开发，往往要用到Cywgin</para>
+	<para>Cygwin是用来在Windows平台下模拟Linux环境的</para>
+	<para>关于Cygwin的详细解释，可参考教程：</para>
+	<para><link xl:href="http://www.crifan.com/files/doc/docbook/cygwin_intro/release/html/cygwin_intro.html">Cygwin详解</link></para>
+	<para></para>
+</sect1>
+
+<sect1 xml:id="windows"><title>Windows</title>
+
+	<sect2 xml:id="win_regedit"><title>Windows的注册表编辑器:<command>regedit</command></title>
+		<para>通过windows的查找，找到regedit：</para>
+		<informalfigure>
+			<mediaobject>
+				<imageobject role="html"><imagedata fileref="images/windows/regedit/rearch_regedit.png" align="left"   scalefit="0" width="100%" /></imageobject>
+				<imageobject role="fo">  <imagedata fileref="images/windows/regedit/rearch_regedit.png" align="center" scalefit="1" width="100%"/></imageobject>
+			</mediaobject>
+		</informalfigure>
+		<para>其对应的位置在：<filename class="directory">C:\Windows</filename></para>
+		<informalfigure>
+			<mediaobject>
+				<imageobject role="html"><imagedata fileref="images/windows/regedit/regedit_location.png" align="left"   scalefit="0" width="100%"/></imageobject>
+				<imageobject role="fo"><imagedata   fileref="images/windows/regedit/regedit_location.png" align="center" scalefit="1" width="100%"/></imageobject>
+			</mediaobject>
+		</informalfigure>
+		<para>点击打开regedit：</para>
+		<informalfigure>
+			<mediaobject>
+				<imageobject role="html"><imagedata fileref="images/windows/regedit/opened_regedit.png" align="left"   scalefit="0" width="100%" /></imageobject>
+				<imageobject role="fo">  <imagedata fileref="images/windows/regedit/opened_regedit.png" align="center" scalefit="1" width="100%"/></imageobject>
+			</mediaobject>
+		</informalfigure>
+		<tip><title>regedit会记住上次打开的位置</title>
+			<para>打开regedit，其默认会自动定位到上次关闭时所在的位置。</para>
+		</tip>
+	</sect2>
+	
+	<sect2 xml:id="win_cmd"><title>Windows的命令行工具: cmd</title>
+		<sect3 xml:id="cmd_intro"><title>cmd简介</title>
+			<para>Windows下面的命令行界面，命令工具，是对应的cmd程序。</para>
+			<para>其对应的位置在：<filename class="directory">C:\Windows\System32</filename></para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/windows/cmd/cmd_location.png" align="left"   scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"><imagedata   fileref="images/windows/cmd/cmd_location.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<para>在win7下，可以通过开始的查找，找到<command>cmd</command>：</para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/windows/cmd/search_cmd.png" align="left"   scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"><imagedata   fileref="images/windows/cmd/search_cmd.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<para>其全称为：<filename class="directory">Windows Command Processor</filename></para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/windows/cmd/windows_command_processor.png" align="left"   scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"><imagedata   fileref="images/windows/cmd/windows_command_processor.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<para>其运行时的截图为：</para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/windows/cmd/cmd_runtime_ui.png" align="left"   scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"><imagedata   fileref="images/windows/cmd/cmd_runtime_ui.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<tip><title>cmd下运行的bat脚本文件</title>
+				<para>在Windows的cmd下面，支持运行后缀为bat或cmd的文件，成为windows下的(bat)脚本文件/批处理文件</para>
+				<para>关于Windows下的Bat脚本，详情参看<link xl:href="http://www.crifan.com/files/doc/docbook/language_summary/release/html/language_summary.html#lan.windows_bat">Windows Batch File</link></para>
+			</tip>
+		</sect3>
+		
+		<sect3 xml:id="cmd_basic_usage"><title>cmd的基本用法</title>
+			<para>右击cmd的左上角的图标
+				<inlinemediaobject>
+					<imageobject><imagedata fileref="images/windows/cmd/cmd_icon.png"/></imageobject>
+					<textobject><phrase>cmd的图标</phrase></textobject>
+				</inlinemediaobject>，会出现对应的菜单：</para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/windows/cmd/cmd_context_menu.png" align="left"   scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"><imagedata   fileref="images/windows/cmd/cmd_context_menu.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<para>可以看到，有两个配置，一个是默认配置Defaults，一个是当前窗口的属性配置properties，两者基本的操作，都是一样的。</para>
+			<para>下面来介绍一下，常见的配置：</para>
+			
+			<sect4 xml:id="cmd_fast_edit"><title>快速编辑：选取，复制，粘贴等操作</title>
+				<para>上图：</para>
+				<informalfigure>
+					<mediaobject>
+						<imageobject role="html"><imagedata fileref="images/windows/cmd/cmd_enable_fast_edit.jpg" align="left"   scalefit="0" width="100%"/></imageobject>
+						<imageobject role="fo"><imagedata   fileref="images/windows/cmd/cmd_enable_fast_edit.jpg" align="center" scalefit="1" width="100%"/></imageobject>
+					</mediaobject>
+				</informalfigure>
+				<para>默认的<command>cmd</command>，一般是关闭了<keycap>编辑选项</keycap>中的<keycap>快速编辑模式</keycap>的。</para>
+				<itemizedlist>
+					<listitem><emphasis>非快速编辑模式</emphasis>
+						<informalfigure>
+							<mediaobject>
+								<imageobject role="html"><imagedata fileref="images/windows/cmd/cmd_not_enable_fast_edit_mode.jpg" align="left"   scalefit="0" width="100%"/></imageobject>
+								<imageobject role="fo"><imagedata   fileref="images/windows/cmd/cmd_not_enable_fast_edit_mode.jpg" align="center" scalefit="1" width="100%"/></imageobject>
+							</mediaobject>
+						</informalfigure>
+						<para>当关闭了<keycap>快速编辑模式</keycap>的话：</para>
+						<itemizedlist>
+							<listitem><emphasis>粘贴文字</emphasis>
+								<para>如果你系统剪贴板中已经拷贝了一些字符，然后想要粘贴到cmd中，那么就需要点击右键：</para>
+								<informalfigure>
+									<mediaobject>
+										<imageobject role="html"><imagedata fileref="images/windows/cmd/cmd_paste_copied_text.jpg" align="left"   scalefit="0" width="100%"/></imageobject>
+										<imageobject role="fo"><imagedata   fileref="images/windows/cmd/cmd_paste_copied_text.jpg" align="center" scalefit="1" width="100%"/></imageobject>
+									</mediaobject>
+								</informalfigure>
+								<para>选择对应的粘贴，才可以粘贴对应的字符：</para>
+								<informalfigure>
+									<mediaobject>
+										<imageobject role="html"><imagedata fileref="images/windows/cmd/cmd_pasted_text.jpg" align="left"   scalefit="0" width="100%"/></imageobject>
+										<imageobject role="fo"><imagedata   fileref="images/windows/cmd/cmd_pasted_text.jpg" align="center" scalefit="1" width="100%"/></imageobject>
+									</mediaobject>
+								</informalfigure>
+							</listitem>
+							<listitem><emphasis>复制文字</emphasis>
+								<para>鼠标是无法直接选择对应的文字的，需要:</para>
+								<informalfigure>
+									<mediaobject>
+										<imageobject role="html"><imagedata fileref="images/windows/cmd/cmd_choose_mark.jpg" align="left"   scalefit="0" width="100%"/></imageobject>
+										<imageobject role="fo"><imagedata   fileref="images/windows/cmd/cmd_choose_mark.jpg" align="center" scalefit="1" width="100%"/></imageobject>
+									</mediaobject>
+								</informalfigure>
+								<para>即右键，选择标记，然后再选择一些文字：</para>
+								<informalfigure>
+									<mediaobject>
+										<imageobject role="html"><imagedata fileref="images/windows/cmd/cmd_choose_text_for_mark.jpg" align="left"   scalefit="0" width="100%"/></imageobject>
+										<imageobject role="fo"><imagedata   fileref="images/windows/cmd/cmd_choose_text_for_mark.jpg" align="center" scalefit="1" width="100%"/></imageobject>
+									</mediaobject>
+								</informalfigure>
+								<para>然后点击右键或输入键盘的Enter键，就可以实现复制对应所选内容了。</para>
+							</listitem>
+						</itemizedlist>
+					</listitem>
+					<listitem><emphasis>快速编辑模式</emphasis>
+						<informalfigure>
+							<mediaobject>
+								<imageobject role="html"><imagedata fileref="images/windows/cmd/cmd_select_fast_edit_mode.jpg" align="left"   scalefit="0" width="100%"/></imageobject>
+								<imageobject role="fo"><imagedata   fileref="images/windows/cmd/cmd_select_fast_edit_mode.jpg" align="center" scalefit="1" width="100%"/></imageobject>
+							</mediaobject>
+						</informalfigure>
+						<para>此时：</para>
+						<itemizedlist>
+							<listitem><emphasis>粘贴文字</emphasis>
+								<para>而如果启用了<keycap>快速编辑模式</keycap>的话，那么就不会再出现上述的右键菜单了，不需要选择粘贴，通过直接点击右键，就可以实现上述字符的粘贴了。</para>
+							</listitem>
+							<listitem><emphasis>复制文字</emphasis>
+								<para>同理，对于复制cmd中的文字，用鼠标选择后：</para>
+								<informalfigure>
+									<mediaobject>
+										<imageobject role="html"><imagedata fileref="images/windows/cmd/cmd_direct_paste_text.jpg" align="left"   scalefit="0" width="100%"/></imageobject>
+										<imageobject role="fo"><imagedata   fileref="images/windows/cmd/cmd_direct_paste_text.jpg" align="center" scalefit="1" width="100%"/></imageobject>
+									</mediaobject>
+								</informalfigure>
+								<para>然后直接通过键盘上的Enter键或点击鼠标右键，即可实现将选中的文字，拷贝到系统剪贴板中，然后就可以粘贴到别的地方/别的程序中了。</para>
+							</listitem>
+						</itemizedlist>
+					</listitem>
+				</itemizedlist>
+			</sect4>
+			
+			<sect4 xml:id="cmd_font"><title>字体</title>
+				<informalfigure>
+					<mediaobject>
+						<imageobject role="html"><imagedata fileref="images/windows/cmd/cmd_font.jpg" align="left"   scalefit="0" width="100%"/></imageobject>
+						<imageobject role="fo"><imagedata   fileref="images/windows/cmd/cmd_font.jpg" align="center" scalefit="1" width="100%"/></imageobject>
+					</mediaobject>
+				</informalfigure>
+			</sect4>
+			
+			<sect4 xml:id="cmd_layout"><title>布局</title>
+				<informalfigure>
+					<mediaobject>
+						<imageobject role="html"><imagedata fileref="images/windows/cmd/cmd_layout.jpg" align="left"   scalefit="0" width="100%"/></imageobject>
+						<imageobject role="fo"><imagedata   fileref="images/windows/cmd/cmd_layout.jpg" align="center" scalefit="1" width="100%"/></imageobject>
+					</mediaobject>
+				</informalfigure>
+				<para>需要说明一下的是，关于屏幕缓冲区大小，指的是系统本身最大所存储的内容，</para>
+				<para>而窗口大小，指的是你当前的cmd的窗口大小。</para>
+				<para>屏幕缓冲区的大小，肯定是要大于等于窗口大小的设置的。</para>
+				<para>屏幕缓冲区大小的设置，决定了你的cmd窗口，最大能多大，即用鼠标拖拉窗口的话，最大能变成多大。</para>
+				<para>对于屏幕缓冲区：</para>
+				<itemizedlist>
+					<listitem>宽度
+						<para>自己试试，改成不超过你的屏幕的宽度为宜，否则横向太长，输出的内容，就不容易看清了。</para>
+					</listitem>
+					<listitem>高度
+						<para>一般设置为大于窗口的大小，这样方便窗口在上下的高度方面，可以随时进行调整。</para>
+					</listitem>
+				</itemizedlist>
+			</sect4>
+			
+			<sect4 xml:id="cmd_color"><title>颜色</title>
+				<informalfigure>
+					<mediaobject>
+						<imageobject role="html"><imagedata fileref="images/windows/cmd/cmd_color.jpg" align="left"   scalefit="0" width="100%"/></imageobject>
+						<imageobject role="fo"><imagedata   fileref="images/windows/cmd/cmd_color.jpg" align="center" scalefit="1" width="100%"/></imageobject>
+					</mediaobject>
+				</informalfigure>
+			</sect4>
+
+		</sect3>
+		
+		<sect3 xml:id="cmd_advanced_usage"><title>cmd的高级用法</title>
+			<tip>相关的旧帖为：<link xl:href="http://www.crifan.com/summary_usage_of_win7_cmd/">【整理】Win7中的Cmd命令行的使用技巧</link></tip>
+			
+			<sect4 xml:id="cmd_history_list"><title>命令历史列表</title>
+				<para><command>cmd</command>中按<keycap>F7</keycap>，可以调出（之前所输入的）命令的历史列表</para>
+				<para>直接上图：</para>
+				<informalfigure>
+					<mediaobject>
+						<imageobject role="html"><imagedata fileref="images/windows/cmd/cmd_f7_command_history.jpg" align="left"   scalefit="0" width="100%"/></imageobject>
+						<imageobject role="fo"><imagedata   fileref="images/windows/cmd/cmd_f7_command_history.jpg" align="center" scalefit="1" width="100%"/></imageobject>
+					</mediaobject>
+				</informalfigure>
+				<para>用法是，在<command>cmd</command>中，按<keycap>F7</keycap>，即可出现上图的效果。</para>
+				<para>其实，默认的通过键盘上的上线箭头，可以输入之前/后输入过的命令的。</para>
+				<para>但是之前不知道，原来F7可以跳出命令历史列表的窗口的。</para>
+			</sect4>
+			
+			<sect4 xml:id="cmd_auto_complete"><title>开启/关闭自动补全</title>
+				<para>win7默认的<command>cmd</command>，是支持自动补全的（就像Linux中shell中的效果一样）</para>
+				<para>即你输入字母后，按<keycap>TAB</keycap>键，则会自动帮你匹配出相应的支持的命令（或当前文件夹下面的文件名）</para>
+				<para>但是之前不知道，此功能，还是可以自己设置开启或关闭的。</para>
+				<para>直接上图：</para>
+				<informalfigure>
+					<mediaobject>
+						<imageobject role="html"><imagedata fileref="images/windows/cmd/cmd_default_property.jpg" align="left"   scalefit="0" width="100%"/></imageobject>
+						<imageobject role="fo"><imagedata   fileref="images/windows/cmd/cmd_default_property.jpg" align="center" scalefit="1" width="100%"/></imageobject>
+					</mediaobject>
+					<mediaobject>
+						<imageobject role="html"><imagedata fileref="images/windows/cmd/cmd_auto_complete.jpg" align="left"   scalefit="0" width="100%"/></imageobject>
+						<imageobject role="fo"><imagedata   fileref="images/windows/cmd/cmd_auto_complete.jpg" align="center" scalefit="1" width="100%"/></imageobject>
+					</mediaobject>
+				</informalfigure>
+				<para>即，<command>cmd</command>中，右键窗口左上角的图标，选择 默认值，然后打开了 控制台窗口的属性 的对话框，对于其中的编辑选项中的自动完成，可以自己开启或关闭。</para>
+				<para>我之前就遇到过一次，不小心，不知道系统怎么出了异怪的事情，<command>cmd</command>中自动补全功能失效了，按TAB键不起作用了，只是光标向右跳动一个TAB的距离，变成了输入TAB键的功能了。后来才找到此选项，关闭后，再启用，才折腾好，TAB才可以继续实现自动补全的功能的。</para>
+			</sect4>
+			
+			<sect4 xml:id="cmd_encoding"><title>设置字符编码：简体中文GBK/英文</title>
+				<para>即 控制台窗口 属性中的默认代码页的设置：</para>
+				<informalfigure>
+					<mediaobject>
+						<mediaobject>
+							<imageobject role="html"><imagedata fileref="images/windows/cmd/cmd_codepage_default_936_gbk.jpg" align="left"   scalefit="0" width="100%"/></imageobject>
+							<imageobject role="fo"><imagedata   fileref="images/windows/cmd/cmd_codepage_default_936_gbk.jpg" align="center" scalefit="1" width="100%"/></imageobject>
+						</mediaobject>
+					</mediaobject>
+				</informalfigure>
+				<para>此处中文的win7，一般已经默认设置为了936了，这样显示出来的文字，是对应的中文GBK的编码的。</para>
+				<para>因此，如果你使用其他程序向控制台输出中文字符的话，比如之前用过python的logging.info输入中文信息到cmd中，此时如果你输出的汉字的编码也是GBK的话，和cmd中的GBK一致，则汉字是可以正确显示的。</para>
+				<para>如果你输出的汉字是其他编码，比如UTF-8，那么和cmd中的GBK编码不一致，就导致cmd中显示出来的汉字，是乱码了。对于python中，输入汉字是unicode话，logging.info会自动输出匹配的汉字，使得其可以正确显示的。</para>
+			</sect4>
+		</sect3>
+
+		<sect3 xml:id="right_menu_run_cmd"><title>右键快速打开cmd并且定位到该文件夹所在路径</title>
+			<para></para>
+			<para>有两种方法：</para>
+			<orderedlist>
+				<listitem><emphasis>手动添加注册表项</emphasis>
+					<orderedlist>
+						<listitem>打开注册表编辑<command>regedit</command>，且定位至<filename>HKEY_CLASSES_ROOT\Directory\shell</filename>
+							<tip>对注册表不了解的，请参考<xref linkend="win_regedit" /></tip>
+						</listitem>
+						<listitem>在shell下新建一个项（目录），命名为<filename>OpenCmd</filename></listitem>
+						<listitem>在<filename>OpenCmd</filename>下新建一个项（目录），名为<filename>command</filename></listitem>
+						<listitem>给<filename>command</filename>下面那个ab图标的，REG_SZ类型的值，设置为</listitem>
+						<listitem><screen>cmd.exe /k pushd %L</screen></listitem>
+					</orderedlist>
+				</listitem>
+				<listitem><emphasis>直接导入注册表文件</emphasis>
+					<para>上述步骤，也可通过导入注册表的方式来实现统一功能。</para>
+					<para>把下面的内容：</para>
+					<programlisting>
+Windows Registry Editor Version 5.00
+[HKEY_CLASSES_ROOT\Directory\shell\OpenCmd\command]
+@="cmd.exe /k pushd %L"
+					</programlisting>
+					<para>保存为<filename>OpenCmd.reg</filename>，然后双击运行<filename>OpenCmd.reg</filename>，即可。</para>
+				</listitem>
+			</orderedlist>
+			<tip>相关的旧帖为：<link xl:href="http://www.crifan.com/finishing_in_the_windows_makes_it_possible_to_add_the_right_to_run_cygwin_and_navigate_directly_to_the_current_folder__finishing_in_windows_xp_right-add_command_line_cmd_command_open_the_current_folde/">【整理】在windows下添加右键使得可以运行cygwin且直接定位到当前文件夹 + 【整理】如何在Windows XP中，右键添加命令行cmd command，打开当前文件夹，定位到当前路径</link></tip>
+			<para></para>
+			<para>无意间，从<link xl:href="http://www.cppblog.com/lauer3912/archive/2011/04/07/143645.aspx">Windows 7使用技巧：在当前路径下打开命令行（cmd）命令窗口</link>中发现，原来Win7中已经支持了此功能了。</para>
+			<para>即，在Win7中，在右击某文件夹的之前，先按Shift，然后再右击</para>
+			<para>此时就会多出一个“在此处打开命令行窗口”,"Open command window here"</para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/windows/cmd/shift_open_dir.png" align="left"   scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"><imagedata   fileref="images/windows/cmd/shift_open_dir.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<para>同样可以实现快速打开cmd并定位到该文件夹所在路径。</para>
+		</sect3>
+	</sect2>
+	
+	<sect2 xml:id="win_dotnet_framework"><title>Windows下的程序所常用的运行库：Microsoft .NET Framework</title>
+		<sect3 xml:id="dotnet_framework_intro"><title>Microsoft .NET Framework简介</title>
+			<para>Microsoft .NET Framework是windows操作系统下很常见的一个和开发人员有关的组件。</para>
+			<para>Microsoft .NET Framework的作用是为了提供此平台，此平台包含很多功能，供其他软件调用，而不需要关心细节，实现程序可移植性更好。</para>
+			<para>Microsoft .NET Framework目前已有很多个版本。大家最常见的有这几个：</para>
+			<orderedlist>
+				<listitem>Microsoft .NET Framework 2.0</listitem>
+				<listitem>Microsoft .NET Framework 3.0</listitem>
+				<listitem>Microsoft .NET Framework 3.5</listitem>
+				<listitem>Microsoft .NET Framework 4.0</listitem>
+			</orderedlist>
+			<para>其不同的版本，新版本兼容旧版本。</para>
+			<para>现在很多人常用的很多软件，也是利用到Microsoft .NET Framework里面的功能了。</para>
+			<para>某个程序如果用到了Microsoft .NET Framework，会在程序发布的时候，说明最低需要哪个版本的Microsoft .NET Framework的。</para>
+			<para>比如，如果你安装的Microsoft .NET Framework 3.5，而程序要求最低是Microsoft .NET Framework 2.0，则你是完全满足了程序要求的，可以正常运行程序的。</para>
+			<para>目前最常见的Windows的操作系统是XP和Win7</para>
+			<orderedlist>
+				<listitem>XP
+					<para>XP系统默认情况下，是没有安装Microsoft .NET Framework</para>
+					<para>只不过，由于其他很多程序的运行也需要Microsoft .NET Framework，所以之前运行某软件的时候，就已经安装了Microsoft .NET Framework。</para>
+					<para>另外还由于目前很多人安装的XP系统，是通过别人制作的GHOST版本的XP，其内在也已经集成了Microsoft .NET Framework了</para>
+					<para>所以,换句话说，对于绝大多数人来说，此时此刻，你的XP中极有可能也已经安装了Microsoft .NET Framework了。</para>
+				</listitem>
+				<listitem>Win7
+					<para>而Win7默认本身已经集成了Microsoft .NET Framework 3.5了。</para>
+				</listitem>
+			</orderedlist>
+		</sect3>
+		
+		<sect3 xml:id="dotnet_framework_0xc0000135"><title>0xC0000135错误是由于缺少了Microsoft .NET Framework</title>
+			<para>综上所述，你的XP或Win7中，多数情况下，都已经支持Microsoft .NET Framework了。</para>
+			<para>而再去运行一般的软件的时候，也都可以正常运行的。</para>
+			<para>但是，凡事总有例外，如果遇到系统上没有装Microsoft .NET Framework，而去运行那些需要Microsoft .NET Framework支持的程序的时候，就会遇到0xC0000135错误</para>
+			<para>比如，我的一个小程序：<link xl:href="http://www.crifan.com/crifan_released_all/website/dotnet/downloadsongtastemusic/">downloadSongtasteMusic</link>，别人在XP上运行，结果出错：</para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/windows/dotnet_framework/init_fail_0xC0000135_error.jpg" align="left" scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"  ><imagedata fileref="images/windows/dotnet_framework/init_fail_0xC0000135_error.jpg" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<para>即显示:应用程序正常初始化(0xc0000135)失败。请单击"确定"，终止应用程序。</para>
+			<para>解决办法是：</para>
+			<para>可以去网上随便下载一个，比如非凡软件网站的<link xl:href="http://www.crsky.com/soft/4818.html">Microsoft .NET Framework v2.0 简体中文版</link></para>
+			<para>然后安装即可。</para>
+			<para>当然，如果本身程序所依赖的Microsoft .NET Framework版本很高，比如要求必须是Microsoft .NET Framework 3.5以上，那么你就必须去找Microsoft .NET Framework 3.5或Microsoft .NET Framework 4.0去安装，才可以的</para>
+		</sect3>
+	</sect2>
+</sect1>
+
+<sect1 xml:id="linux"><title>Linux</title>
+	<para></para>
+	<para></para>
+
+	<sect2 xml:id="linux_shebang"><title>脚本程序中最开始的那两个字符： #!，叫做shebang</title>
+		<para></para>
+		<para></para>
+		<para>http://en.wikipedia.org/wiki/Shebang_(Unix)</para>
+		<para></para>
+		<para></para>
+		<para></para>
+		<para></para>
+		<para></para>
+	</sect2>
+</sect1>
+
+<sect1 xml:id="non_commercial_claim"><title>开源协议</title>
+	<para>很多软件，书籍，文章等，在发布的时候，都声明遵从某种协议。</para>
+	<para>Linux/Unix世界中，多数软件都是遵循GPL等协议的。</para>
+	<para>最新看到很多的书籍，文章等，声明说是遵循“署名-非商业性使用(CC BY-NC)”的。</para>
+	<para>下面就对一些常见的协议，做个最简单的介绍。</para>
+	
+	<sect2 xml:id="gpl"><title>GPL</title>
+		<para>简单说就是：如果你写程序用了开源的GPL的代码，那么你的程序也必须开源</para>
+	</sect2>
+
+	<sect2 xml:id="cc_by_nc"><title>署名-非商业性使用(CC BY-NC)</title>
+		<para>署名-非商业性使用(CC BY-NC)有很多个版本，之前的有<link xl:href="http://creativecommons.org/licenses/by-nc/2.0/">2.0</link>的，后来又<link xl:href="http://creativecommons.org/licenses/by-nc/2.5/">2.5</link>的，最新的有<link xl:href="http://creativecommons.org/licenses/by-nc/3.0/">3.0</link>的</para>
+		<para>关于2.5的中文版的，官网的解释，请参见：<link xl:href="http://creativecommons.org/licenses/by-nc/2.5/cn/">署名-非商业性使用 2.5 中国大陆(CC BY-NC 2.5) </link></para>
+		<para>关于其含义，此处借用<link xl:href="http://woodpecker.org.cn/abyteofpython_cn/chinese/pr01s05.html">简明Python教程-前言-约定条款</link>中的说明：</para>
+		<quote>
+			<para>简单地说，你只要署上我的名字，就可以免费复制、分发和展示本书。</para>
+			<para>未得到我的允许，你禁止把本书用于商业目的。</para>
+			<para>你在修改本书的时候，必须清楚地标明所有做了改动的地方,</para>
+			<para>你发布修改后的作品时也必须遵照与本书相同的约定。</para>
+		</quote>
+		<para>如此，CC BY NC的含义，就很清晰明了。</para>
+		<para>其基本等价于如此的声明：</para>
+		<itemizedlist>
+			<listitem><emphasis>欢迎转载，但请著名出处</emphasis></listitem>
+			<listitem><emphasis>未经作者允许，禁止商业使用</emphasis></listitem>
+		</itemizedlist>
+	</sect2>
+</sect1>
+
+<sect1 xml:id="env_var"><title>环境变量</title>
+	<para>在应用程序不修改的前提下，支持更多的平台。</para>
+	<para>是程序和操作系统之间信息沟通的一种方式。</para>
+	<para></para>
+	
+	<sect2 xml:id="win_env_var"><title>Windows中的环境变量</title>
+		<sect3 xml:id="edit_win_env_var"><title>编辑/添加/修改windows中的环境变量</title>
+			<para>下面，通过，把<command>xsltproc</command>所在的路径：<filename class="directory">E:\DevRoot\docbook\tools\xslt\bin</filename>，添加到windows中的Path环境变量中去，为例</para>
+			<para>详细详解每一步是如何操作的：</para>
+			<para>右键桌面上的<guimenuitem>我的电脑</guimenuitem>,选择<guimenuitem>属性</guimenuitem>：</para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/env_var/win/right_click_then_property.png" align="left" scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"><imagedata fileref="images/env_var/win/right_click_then_property.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<para>高级&rArr;环境变量:</para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/env_var/win/advance_enviroment.png" align="left" scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"><imagedata fileref="images/env_var/win/advance_enviroment.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<para>可以看到，一个是当前用户的环境变量，一个是系统的全局的环境变量:</para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/env_var/win/one_cur_usr_one_sys.png" align="left" scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"><imagedata fileref="images/env_var/win/one_cur_usr_one_sys.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<para>其中：</para>
+			<itemizedlist>
+				<listitem><emphasis>当前用户的环境变量</emphasis>
+					<para>从作用范围来说，只是针对当前用户有效，所以可称为是局部的环境变量</para>
+				</listitem>
+				<listitem><emphasis>系统环境变量</emphasis>
+					<para>从作用范围来说，针对所有用户都有效，所以可称为全局的环境变量</para>
+					<para>一般设置环境变量，是希望所有用户都有效，所以往往都是去设置系统的环境变量。</para>
+				</listitem>
+			</itemizedlist>
+			<para>然后去找到系统的Path环境变量：</para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/env_var/win/find_path_var.png" align="left" scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"><imagedata fileref="images/env_var/win/find_path_var.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<para>双击后，可以编辑对应环境变量的值：</para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/env_var/win/double_click_to_edit.png" align="left" scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"><imagedata fileref="images/env_var/win/double_click_to_edit.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<para>关于windows中的环境变量的值，此处简单说明一下。</para>
+			<para>其某个环境变量的值，比如此处的path，其值可以有很多个部分，对应的每个部分之间，都是以分号<emphasis>;</emphasis>来分隔开的：</para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/env_var/win/colon_to_seperate.png" align="left" scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"><imagedata fileref="images/env_var/win/colon_to_seperate.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<para>然后对于想要编辑环境变量的值的话，除了可以左右键移动之外，也可以通过使用Home和End键，分别定为到最开始和最后的位置。</para>
+			<para>而<keycap>Ctrl+&larr;</keycap>或<keycap>Ctrl+&rarr;</keycap>可以实现一次移动一个单词（word）。</para>
+			<para>此处，通过End键移动到最后，可以看出，对于变量值的最后，可以没有分号分隔：</para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/env_var/win/last_pos_can_no_colon.png" align="left" scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"><imagedata fileref="images/env_var/win/last_pos_can_no_colon.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<para>当前为了方便后续再添加其他的只，也可以写上。</para>
+			<para>而此处需要在后面添加新的一部分的值，所以是必须要加上冒号来分隔开。</para>
+			<para>然后加上此处的<command>xsltproc</command>的路径：<filename class="directory">E:\DevRoot\docbook\tools\xslt\bin</filename></para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/env_var/win/append_value_into_path.png" align="left" scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"><imagedata fileref="images/env_var/win/append_value_into_path.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<para>然后再点击<guimenuitem>确定</guimenuitem>：</para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/env_var/win/click_ok_to_save.png" align="left" scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"><imagedata fileref="images/env_var/win/click_ok_to_save.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<para>其会稍微停顿一下，那是由于系统去更新此环境变量的值了。</para>
+			<para>最后再点击<guimenuitem>确定</guimenuitem>，即可完成对环境变量的修改：</para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/env_var/win/in_end_click_ok.png" align="left" scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"><imagedata fileref="images/env_var/win/in_end_click_ok.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<para>之后，你再重新打开windows的命令行cmd，此时的环境变量，就真正生效了。</para>
+			<tip xml:id="tip.win_check_env_value"><title>如何在windows中查看某个环境变量的值</title>
+				<para>在windows中，打开命令行cmd后，输入</para>
+				<screen>echo %PATH%</screen>
+				<para>即可查看名为path的环境变量的值。查看其他变量，方法类似。</para>
+			</tip>
+		</sect3>
+		
+		<sect3 xml:id="add_new_win_env_var"><title>windows中新建一个环境变量</title>
+			<para>在系统变量中，点击<guimenuitem>新建</guimenuitem>：</para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/env_var/win/create_new_env_var.png" align="left" scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"><imagedata fileref="images/env_var/win/create_new_env_var.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<para>填入变量名和值:</para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/env_var/win/input_name_and_value.png" align="left" scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"><imagedata fileref="images/env_var/win/input_name_and_value.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<para>可以看到新建好了一个系统环境变量<emphasis>FOP_HOME</emphasis>了：</para>
+			<informalfigure>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/env_var/win/new_added_fop_home.png" align="left" scalefit="0" width="100%"/></imageobject>
+					<imageobject role="fo"><imagedata fileref="images/env_var/win/new_added_fop_home.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</informalfigure>
+			<para>如此，即可建立一个环境变量了，然后点击确定，去让系统保存，生效，即可。</para>
+		</sect3>
+	</sect2>
+	
+	<sect2 xml:id="linux_env_var"><title>Linux中的环境变量</title>
+		<para></para>
+		<para></para>
+		<para></para>
+		<para></para>
+		<para></para>
+	</sect2>
+	
+</sect1>
+
+<sect1 xml:id="java"><title>Java</title>
+	<itemizedlist>
+		<listitem>JRE：普通使用者，只需要安装此Java Runtime Environment即可。</listitem>
+		<listitem>JDK：Java程序的开发者，才需要安装此JDK，用于开发各种Java相关的程序。</listitem>
+	</itemizedlist>
+	<para></para>
+
+	<sect2 xml:id="java_env_setup"><title>Java安装后的环境变量的设置</title>
+		<para>在Windows系统中，Java安装完毕之后，需要去设置必要的环境变量：</para>
+		<itemizedlist>
+			<listitem>JAVA_HOME
+				<para>新建JAVA_HOME，设置值为jdk的安装路径，比如：</para>
+				<para><filename class="directory">C:\Program Files\Java\jdk1.7.0</filename></para>
+			</listitem>
+			<listitem>CLASSPATH
+				<para>新建CLASSPATH，设置值为</para>
+				<para><screen>.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;</screen></para>
+			</listitem>
+			<listitem>PATH
+				<para>修改PATH环境变量，（往往是在最后的位置去）添加：</para>
+				<para><screen>%JAVA_HOME%\bin;%JAVA_HOME%\jre\bin;</screen></para>
+			</listitem>
+		</itemizedlist>
+		<para>然后再去重新打开一个Windows中的命令行<command>cmd</command>，去输入<command>javac</command>即可验证是否已正常安装了java了。</para>
+	</sect2>
+</sect1>
+
+<sect1 xml:id="picture_size"><title>各种图片的尺寸</title>
+	<para>其实关于常见图片格式的大小问题，之前就写过一个帖子，整理了向word中粘贴不同格式的图片，导致word大小不同的问题。</para>
+	<para>当时好像是发现，gif是相对尺寸最小的。</para>
+	<para>此处，之所以在软件开发中提及到各种图片的尺寸，是因为，在有些和软件开发相关的过程中，会希望在不降低图片的视觉效果的前提下，而使用最小的图片。</para>
+	<para>比如docbook等开发过程中，遇到在写xml源码中，用到对应的figure图片，想要在生成的html中显示的话，则希望图片的文件大小，尽量小，以减少服务器的负荷。</para>
+	<para>而经过折腾发现，同样一副图片，分辨率相同和看起来肉眼分辨不出差距的前提下，不同的格式的图片的文件大小，很多时候，还是差距很大的。</para>
+	<para>所以，就希望在不影响视觉的前提下，仅保留图片大小是最小的那种格式。</para>
+	<para>此时，最小的格式，并不一定完全是gif格式。目前已经发现的规律是：</para>
+	<orderedlist>
+		<listitem><emphasis>多数情况下，png是最小的</emphasis>
+			<para>多数时候，将图片从jpf和gif转换为png的时候，图片尺寸都会减少的。</para>
+			<para>之前用<link xl:href="http://www.crifan.com/files/doc/docbook/crifan_rec_soft/release/html/crifan_rec_soft.html#common.photofiltre">PhotoFiltre</link>转换过很多的图片，比如从gif转换为png，很多图片尺寸，都是降低40%左右，比如从49K变成34K</para>
+			<note><title>word另存为html而获得的png图片的文件大小是相对比较大的，可以转换为更小的</title>
+				<para>我刚开始遇到的情况，其实和上述结果相反。因为是用PhotoFiltre将png图片转换为gif，结果尺寸是降低了50%。</para>
+				<para>后来才发现，把转换后的gif再去转换为png，结果又在gif基础上降低了40%左右。</para>
+				<para>然后才想起来，原来那些png格式的图片，都是从word另存为html而导出的，所以好像是其故意保留了较高的颜色等内在参数，而使得图片大小相对较大。</para>
+				<para>经过PhotoFiltre转换后，可以在另存为的时候，选择默认配置，就可以只包括基本内容，大大降低了图片的尺寸。</para>
+				<para>而转换后的图片，至少肉眼是看不出前后的差距的。</para>
+				<para>所以，对于自己觉得尺寸大的图片，还是要通过PhotoFiltre去转换为png试试，看看是否可以降低图片尺寸。</para>
+			</note>
+		</listitem>
+		<listitem>有些<emphasis>内容简单的</emphasis>图片，png反而比gif小，而gif却很大
+			<para>比如这样的图片，本身图片所包含内容不多：</para>
+			<figure xml:id="fg.png_small_gif_large"><title>png小，但gif大的图片</title>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/picture_size/png_small_gif_large.png" align="left"   scalefit="0" width="100%" /></imageobject>
+					<imageobject role="fo">  <imagedata fileref="images/picture_size/png_small_gif_large.png" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</figure>
+		</listitem>
+		<listitem>有些内容复杂，但是低分辨率的图片，jpg很小，gif很大，png非常大
+			<para>比如这张图片，本身图片包含不少，但是是低分辨率：</para>
+			<figure xml:id="fg.jpg_small_gif_larger_png_largest"><title>jpg很小，gif很大，png非常大的图片</title>
+				<mediaobject>
+					<imageobject role="html"><imagedata fileref="images/picture_size/jpg_small_gif_larger_png_largest.jpg" align="left"   scalefit="0" width="100%" /></imageobject>
+					<imageobject role="fo">  <imagedata fileref="images/picture_size/jpg_small_gif_larger_png_largest.jpg" align="center" scalefit="1" width="100%"/></imageobject>
+				</mediaobject>
+			</figure>
+		</listitem>
+	</orderedlist>
+	<para></para>
+</sect1>
+
+</chapter>
